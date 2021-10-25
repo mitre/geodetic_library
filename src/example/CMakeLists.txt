@@ -1,23 +1,25 @@
-# Use this to build an examples library of source
+# Use this to build an examples binary
 cmake_minimum_required(VERSION 3.14)
+project(GEOLIB_EXAMPLE VERSION 0.0.1)
 
 set(CMAKE_CXX_STANDARD 11)
 
-include(${PROJECT_SOURCE_DIR}/.cmake/CPM.cmake)
+include(${PROJECT_SOURCE_DIR}/../../.cmake/CPM.cmake)
 
 CPMAddPackage(
         NAME geolib_library
-        GIT_REPOSITORY https://github.com/mitre/geodetic_library.git
+        GITHUB_REPOSITORY mitre/geodetic_library
         VERSION 3.2.7-SNAPSHOT
         GIT_TAG main
 )
 
 # Define source files for this executable
 set(EXAMPLES_MAIN_SRC
-        ${EXAMPLES_SRC_DIR}/main.cpp)
+        ${PROJECT_SOURCE_DIR}/main.cpp)
 
 add_executable(examples ${EXAMPLES_MAIN_SRC})
-target_link_libraries(examples geolib_library)
+target_include_directories(examples PUBLIC ${geolib_library_SOURCE_DIR}/include)
+target_link_libraries(examples geolib)
 set_target_properties(examples PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin
         )

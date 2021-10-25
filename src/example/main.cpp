@@ -21,9 +21,12 @@
 #include <cstring>
 #include <iostream>
 #include <cfloat>
-#include "Geolib.h"
-#include "Util.h"
-#include "cppmanifest.h"
+#include "geolib/Geolib.h"
+#include "geolib/Util.h"
+#include "geolib/Shape.h"
+#include "geolib/Constants.h"
+#include "geolib/ErrorCodes.h"
+#include "geolib/cppmanifest.h"
 
 const std::string buildinfoFlag("--buildinfo");
 
