@@ -61,7 +61,7 @@ int main(int argc,
 
   // Write some output
   std::string geolib_idealab_version = cppmanifest::getVersion();
-  std::cout << "Example calls using the geolib-idealab library: " << geolib_idealab_version.c_str() << std::endl;
+  std::cout << "Example calls using the MITRE geolib library: " << geolib_idealab_version.c_str() << std::endl;
 
   std::cout << "Start at (0, 0) and project north to (1.0, 0)..." << std::endl;
 
