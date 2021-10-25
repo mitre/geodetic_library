@@ -4,10 +4,19 @@
 
 ## Build
 
-Use `cmake` in the normal way. You'll get two artifacts:
+Use `cmake` in the normal way.
+
+```bash
+mkdir build
+cd build
+cmake ..
+make
+```
+
+You'll get two artifacts:
 
 * the geodetic library `libgeolib.a` in /lib. 
-* an example binary called `examples` that links against `libgeolib.a` and calls it in the `main`. See [main.cpp](/src/example/main.cpp) and /bin. 
+* a test binary `testGeolib` in /bin.
 
 This library & sample binary builds and runs on **CentOs7** and **MacOsX**.
 
@@ -27,7 +36,7 @@ Please use standard GitHub Issue and Discussion tools for interaction with the d
 
 Yup, we have 'em. See /test.
 
-We do use a custom test harness for these tests. We'd prefer to use `gtest` at this point, but it will take some time to make the switch.
+We currently use a custom test harness for our testing. The goal is to switch over to using `gtest` at some point in the future.
 
 ## CPM Snippet
 
@@ -59,6 +68,17 @@ int main(int argc, char *argv[]) {
 }
 ```
 
-## Examples
+## Example Binary
 
-See also the `examples` binary built by this repository in /src/example.
+See also the `examples` binary built by this repository in /src/example. It uses CPM to retrieve, build, and link against `geolib`. Then it makes some sample calls to show `direct()` and `inverse()` operations on the ellipsoid.
+
+To build, perform this `cmake` operation:
+
+```bash
+mkdir build
+cd build
+cmake ../src/example
+make
+```
+
+This will produce a binary in /src/example/bin called `examples` that links against `libgeolib.a` and calls it in the `main` routine. 
