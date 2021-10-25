@@ -37,19 +37,17 @@ Drop this in the appropriate place for your application:
 ```cmake
 CPMAddPackage(
         NAME geolib_library
-        GIT_REPOSITORY https://github.com/mitre/geodetic_library.git
-        VERSION 3.2.7
-        GIT_TAG 3.2.7
+        GITHUB_REPOSITORY mitre/geodetic_library
+        VERSION 3.2.7-SNAPSHOT
+        GIT_TAG main
 )
 ```
-In the above, please use a tagged, versioned build of geolib whenever possible.
+When using this library, we strongly recommend using a tagged, versioned build of geolib whenever possible.
 
 Then, where you do your linking commands in cmake, also add this:
 ```cmake
-target_include_directories(my-application PUBLIC
-        ${geolib_library_INCLUDE_DIRS}
-        )
-target_link_libraries(my-application geolib_library)
+target_include_directories(my-application PUBLIC ${geolib_library_SOURCE_DIR}/include)
+target_link_libraries(my-application geolib)
 ```
 
 Once these are done, your application (`my-application`) will be linked against `geolib_library` and you can call it from your code. Like this:
@@ -63,4 +61,4 @@ int main(int argc, char *argv[]) {
 
 ## Examples
 
-See also the `examples` binary built by this repository. 
+See also the `examples` binary built by this repository in /src/example.
