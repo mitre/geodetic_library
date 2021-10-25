@@ -13,7 +13,7 @@ This library & sample binary builds and runs on **CentOs7** and **MacOsX**.
 
 **NOTE 1**: Several c-code source files have been intentionally ignored in the build of the library. The goal in removing unneeded code from the library was to keep callers from using code that has not been recently tested. The ignored source code may be added back into the library build as needed, but it should be tested as it is added back in. See [CMakeLists.txt](/geolib/src/main/c/CMakeLists.txt) for more information.
 
-**NOTE 2**: The `geolib` library can be compiled to run one of three solvers: Vincenty, Karney, or NGSVincenty. The solver decision is intentionally forced to happen at compile-time. See [CMakeLists.txt](/CMakeLists.txt) for more details.
+**NOTE 2**: The `geolib` library can be compiled to run one of three solvers: Vincenty, Karney, or NGSVincenty. The solver decision is required to occur at compile-time. Only one solver may be compiled into the library. See [CMakeLists.txt](/CMakeLists.txt) for more details.
 
 ## Automatic Builds
 
