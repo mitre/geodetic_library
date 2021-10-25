@@ -49,12 +49,11 @@ set (geolib_INCLUDE_DIRS
         ${PROJECT_SOURCE_DIR}/include/geolib)
 set (geolib_test_INCLUDE_DIRS
         ${PROJECT_SOURCE_DIR}/include/)
-set (EXAMPLES_SRC_DIR
-        ${PROJECT_SOURCE_DIR}/src/example)
+# set (EXAMPLES_SRC_DIR
+#         ${PROJECT_SOURCE_DIR}/src/example)
 set (TEST_SRC_DIR 
         ${PROJECT_SOURCE_DIR}/test)
 
 # Look at the subdirectory definitions to understand the build details
 add_subdirectory(${GEOLIB_SRC_DIR})
-add_subdirectory(${EXAMPLES_SRC_DIR})
 add_subdirectory(${TEST_SRC_DIR})
