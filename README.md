@@ -37,7 +37,7 @@ Drop this in the appropriate place for your application:
 ```cmake
 CPMAddPackage(
         NAME geolib_library
-        GIT_REPOSITORY  
+        GIT_REPOSITORY https://github.com/mitre/geodetic_library.git
         VERSION 3.2.7
         GIT_TAG 3.2.7
 )
