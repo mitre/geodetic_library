@@ -98,7 +98,7 @@ You'll get two artifacts:
 * the geodetic library `libgeolib.a` in /lib. 
 * a test binary `testGeolib` in /bin.
 
-This library & sample binary builds and runs on **CentOs7** and **MacOsX**.
+This library & test binary is known to build and run on **CentOs7** and **MacOsX**. 
 
 **NOTE 1**: Several c-code source files have been intentionally ignored in the build of the library. The goal in removing unneeded code from the library was to keep callers from using code that has not been recently tested. The ignored source code may be added back into the library build as needed, but it should be tested as it is added back in. See [CMakeLists.txt](/geolib/src/main/c/CMakeLists.txt) for more information.
 
