@@ -55,3 +55,4 @@ set (TEST_SRC_DIR
 # Look at the subdirectory definitions to understand the build details
 add_subdirectory(${GEOLIB_SRC_DIR})
 add_subdirectory(${TEST_SRC_DIR})
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/example)
