@@ -37,5 +37,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake ../src/example
-        make 
+        cmake ../src/example -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+    
+    - name: Build example project
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
