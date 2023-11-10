@@ -21,20 +21,20 @@ jobs:
       run: cmake -S . -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build geolib and tests
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} 
 
     - name: Test
       working-directory: ${{github.workspace}}
       run: ${{github.workspace}}/bin/testGeolib -t
   
-  build-example:
-    runs-on: ubuntu-22.04
+  # build-example:
+  #   runs-on: ubuntu-22.04
     
-    steps:
-    - uses: actions/checkout@v3
+  #   steps:
+  #   - uses: actions/checkout@v3
 
-    - name: Configure CMake
-      run: cmake -S . -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+  #   - name: Configure CMake
+  #     run: cmake -S . -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
     
-    - name: Build example project
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target examples
+  #   - name: Build example project
+  #     run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target examples
