@@ -27,9 +27,9 @@ jobs:
 
     - name: Build example project
       run: |
-        cd build
-        cmake ../src/example
-        make
+        cd src/example
+        cmake -S . -B ${{github.workspace}}/build 
+        cmake --build ${{github.workspace}}/build 
 
     - name: Test
       working-directory: ${{github.workspace}}
