@@ -27,7 +27,6 @@ jobs:
 
     - name: Build example project
       run: |
-        mkdir build
         cd build
         cmake ../src/example
         make
