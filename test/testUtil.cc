@@ -516,7 +516,7 @@ void outputTestSuiteXML(const TestSuite &suite, const int level, FILE* file)
  */
 void outputTestSuiteMetrics(TestSuite suite, char* outputFile)
 {
-    char* fileLocation = FILEROOT "/test/";
+    const char* fileLocation = FILEROOT "/test/";
     char fileName[100];
     char timeStamp[100];
     char completeFilePath[500];
@@ -963,7 +963,7 @@ void newpause(void)
 //TODO This function is a temporary duplicate of the displayLocus function.
 //Once the refactoring of libWGS84.c is complete and displayLocus is public
 //all references to printLocus should be replaced with displayLocus.
-void printLocus(char* locusName, Locus locus)
+void printLocus(const char* locusName, Locus locus)
 {
     double DEG2RAD = M_PI / 180.0;
     double locslope = atan((locus.endDist - locus.startDist) / locus.geoLength);
