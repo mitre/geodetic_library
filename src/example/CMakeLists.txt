@@ -8,9 +8,9 @@ include(${PROJECT_SOURCE_DIR}/../../.cmake/CPM.cmake)
 
 CPMAddPackage(
         NAME geolib_library
-        GITHUB_REPOSITORY ddrake-mitre/geodetic_library
+        GITHUB_REPOSITORY mitre/geodetic_library
         VERSION 3.2.7-SNAPSHOT
-        GIT_TAG "bugfix/remove-string-constant-compiler-warnings"
+        GIT_TAG main
 )
 
 # Define source files for this executable
