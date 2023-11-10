@@ -20,6 +20,10 @@ SET(TEST_SRC
 add_executable(testGeolib ${TEST_SRC})
 target_include_directories(testGeolib PUBLIC ${geolib_INCLUDE_DIRS} ${geolib_test_INCLUDE_DIRS})
 target_link_libraries(testGeolib geolib)
-set_target_properties(testGeolib PROPERTIES
+target_compile_definitions(testGeolib 
+        PRIVATE 
+        FILEROOT=".")
+set_target_properties(testGeolib 
+        PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin
         )
