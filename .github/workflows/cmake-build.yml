@@ -27,14 +27,15 @@ jobs:
       working-directory: ${{github.workspace}}
       run: ${{github.workspace}}/bin/testGeolib -t
   
-  # build-example:
-  #   runs-on: ubuntu-22.04
+  build-example:
+    runs-on: ubuntu-22.04
     
-  #   steps:
-  #   - uses: actions/checkout@v3
+    steps:
+    - uses: actions/checkout@v3
 
-  #   - name: Configure CMake
-  #     run: cmake -S . -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-    
-  #   - name: Build example project
-  #     run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target examples
+    - name: Build examples
+      run: |
+        mkdir build
+        cd build
+        cmake ../src/example
+        make
