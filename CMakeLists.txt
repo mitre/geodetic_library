@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(GEOLIB VERSION 3.2.7.1) # the nano value is a boolean. 1 == SNAPSHOT, 0 == release
+project(GEOLIB VERSION 3.2.8.1) # the nano value is a boolean. 1 == SNAPSHOT, 0 == release
 
 set (CMAKE_CXX_STANDARD 11)
 
