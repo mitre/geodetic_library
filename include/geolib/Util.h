@@ -323,7 +323,7 @@ LLPoint mapVectorToSphere(Vector v);
  * @param displayRadians Flag to determine output in degrees (0) or radians (1) (int)
  * @return Returns a string containing properties of the input LLPoint
  */
-char *createPtString(LLPoint p, char *pointName, OutputMode mode, int displayRadians);
+char *createPtString(LLPoint p, const char *pointName, OutputMode mode, int displayRadians);
 
 /** Creates a string describing the properties of a Geodesic in the desired format
  * @param g Geodesic to be described (Geodesic)
@@ -332,7 +332,7 @@ char *createPtString(LLPoint p, char *pointName, OutputMode mode, int displayRad
  * @param displayRadians Flag to determine output in degrees (0) or radians (1) (int)
  * @return Returns a string containing properties of the input Geodesic
  */
-char *createGeoString(Geodesic g, char *geoName, OutputMode mode, int displayRadians);
+char *createGeoString(Geodesic g, const char *geoName, OutputMode mode, int displayRadians);
 
 /** Creates a string describing the properties of a Locus in the desired format
  * @param l Locus to be described (Locus)
@@ -350,7 +350,7 @@ char *createLocusString(Locus l, char *locusName, OutputMode mode, int displayRa
  * @param displayRadians Flag to determine output in degrees (0) or radians (1) (int)
  * @return Returns a string containing properties of the input Arc
  */
-char *createArcString(Arc a, char *arcName, OutputMode mode, int displayRadians);
+char *createArcString(Arc a, const char *arcName, OutputMode mode, int displayRadians);
 
 /** Creates a string describing the properties of a Spiral in the desired format
  * @param a Spiral to be described (Spiral)
@@ -449,7 +449,7 @@ void displayComplexBndry(ComplexBoundary c, char *complexBoundaryName, int displ
  * @return Prints the properties of the LLPoint to the system console in the proper format
  * @retval Nothing
  */
-void displayMatlabPt(LLPoint p, char *pointName, int displayRadians);
+void displayMatlabPt(LLPoint p, const char *pointName, int displayRadians);
 
 /** Prints the properties of a Geodesic to the console in a Matlab friendly format
  * @param g Geodesic to be described (Geodesic)
@@ -458,7 +458,7 @@ void displayMatlabPt(LLPoint p, char *pointName, int displayRadians);
  * @return Prints the properties of the Geodesic to the system console in the proper format
  * @retval Nothing
  */
-void displayMatlabGeo(Geodesic g, char *geoName, int displayRadians);
+void displayMatlabGeo(Geodesic g, const char *geoName, int displayRadians);
 
 /** Prints the properties of a Locus to the console in a Matlab friendly format
  * @param l Locus to be described (Locus)
@@ -476,7 +476,7 @@ void displayMatlabLocus(Locus l, char *locusName, int displayRadians);
  * @return Prints the properties of the Arc to the system console in the proper format
  * @retval Nothing
  */
-void displayMatlabArc(Arc a, char *arcName, int displayRadians);
+void displayMatlabArc(Arc a, const char *arcName, int displayRadians);
 
 /** Prints the properties of a Spiral to the console in a Matlab friendly format
  * @param a Spiral to be described (Spiral)

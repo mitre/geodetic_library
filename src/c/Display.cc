@@ -135,13 +135,13 @@ void geolib_idealab::aboutGeolib(char *result, const unsigned int size)
 	}
 }
 
-char* geolib_idealab::createPtString(LLPoint p, char* pointName, OutputMode mode, int displayRadians)
+char* geolib_idealab::createPtString(LLPoint p, const char* pointName, OutputMode mode, int displayRadians)
 {
 	char* string = static_cast<char *>(calloc(sizeof(char), 500));
 
     double lat = p.latitude;
     double lon = p.longitude;
-    char* angleUnits = "rad";
+    const char* angleUnits = "rad";
     char conversion[10] = "";
     const int maxNameLen = 100;
     char name[101];//+1 is for terminating character '\0'
@@ -188,7 +188,7 @@ char* geolib_idealab::createPtString(LLPoint p, char* pointName, OutputMode mode
 	return string;
 }
 
-char* geolib_idealab::createGeoString(Geodesic g, char* geoName, OutputMode mode, int displayRadians)
+char* geolib_idealab::createGeoString(Geodesic g, const char* geoName, OutputMode mode, int displayRadians)
 {
 	char* string = static_cast<char *>(calloc(sizeof(char), 2000));
     char conversion[10] = "";
@@ -210,7 +210,7 @@ char* geolib_idealab::createGeoString(Geodesic g, char* geoName, OutputMode mode
     double startAz = g.startAz;
     double endAz = g.endAz;
     double revAz = modpos(g.endAz + M_PI, M_2PI );
-    char* angleUnits = "rad";
+    const char* angleUnits = "rad";
 
     if (!displayRadians)
     {
@@ -283,7 +283,7 @@ char* geolib_idealab::createGeoString(Geodesic g, char* geoName, OutputMode mode
 	return string;
 }
 
-char* geolib_idealab::createArcString(Arc a, char* arcName, OutputMode mode, int displayRadians)
+char* geolib_idealab::createArcString(Arc a, const char* arcName, OutputMode mode, int displayRadians)
 {
 	char* string = static_cast<char *>(calloc(sizeof(char), 3000));
     char conversion[10] = "";
@@ -313,7 +313,7 @@ char* geolib_idealab::createArcString(Arc a, char* arcName, OutputMode mode, int
     double endAz = a.endAz;
     double subtendedAngle = a.subtendedAngle;
     double midPtCrs;
-    char* angleUnits = "rad";
+    const char* angleUnits = "rad";
 
 	//compute the course from the arc center to the arc mid point
 	midPtCrs = modpos(a.startAz + (0.5*a.subtendedAngle), M_2PI);//subtended angle is signed already
@@ -459,7 +459,7 @@ char* geolib_idealab::createSpiralString(Spiral sp, char* spiralName, OutputMode
     double endAz = sp.endAz;
     double subtendedAngle = sp.subtendedAngle;
     double growthRate = sp.growthRate;
-    char* angleUnits = "rad";
+    const char* angleUnits = "rad";
 
     if (!displayRadians)
     {
@@ -600,7 +600,7 @@ char* geolib_idealab::createLocusString(Locus l, char* locusName, OutputMode mod
     double startAz = l.geoAz;
     double endAz = modpos(l.geoRevAz + M_PI, M_2PI );
     double revAz = l.geoRevAz;
-    char* angleUnits = "rad";
+    const char* angleUnits = "rad";
 
     if (!displayRadians)
     {
@@ -875,7 +875,7 @@ void geolib_idealab::displayComplexBndry(ComplexBoundary c, char* complexBoundar
 	printf("%s", output);
 }
 
-void geolib_idealab::displayMatlabPt(LLPoint p, char* pointName, int displayRadians)
+void geolib_idealab::displayMatlabPt(LLPoint p, const char* pointName, int displayRadians)
 {
 	char* output;
 
@@ -883,7 +883,7 @@ void geolib_idealab::displayMatlabPt(LLPoint p, char* pointName, int displayRadi
 	printf("%s", output);
 }
 
-void geolib_idealab::displayMatlabGeo(Geodesic g, char* geoName, int displayRadians)
+void geolib_idealab::displayMatlabGeo(Geodesic g, const char* geoName, int displayRadians)
 {
 	char* output;
 
@@ -891,7 +891,7 @@ void geolib_idealab::displayMatlabGeo(Geodesic g, char* geoName, int displayRadi
 	printf("%s", output);
 }
 
-void geolib_idealab::displayMatlabArc(Arc a, char* arcName, int displayRadians)
+void geolib_idealab::displayMatlabArc(Arc a, const char* arcName, int displayRadians)
 {
 	char* output;
 

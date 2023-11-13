@@ -118,7 +118,7 @@ void newpause();
 //TODO This function is a temporary duplicate of the displayLocus function.
 //Once the refactoring of libWGS84.c is complete and displayLocus is public
 //all references to printLocus should be replaced with displayLocus.
-void printLocus(char* locusName, Locus locus);
+void printLocus(const char* locusName, Locus locus);
 
 double crsZeroToTwoPI(double crs);
 
