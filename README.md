@@ -1,3 +1,5 @@
+![build status](https://github.com/mitre/geodetic_library/actions/workflows/cmake-build.yml/badge.svg)
+
 # MITRE Geodetic Library
 
 `Geodetic library` (or `geolib`) is a library for performing WGS-84 calculations with high precision. We think it's very handy and use it regularly in our internal aviation software. Enjoy!
