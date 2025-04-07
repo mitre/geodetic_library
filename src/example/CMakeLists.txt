@@ -9,7 +9,7 @@ include(${PROJECT_SOURCE_DIR}/../../.cmake/CPM.cmake)
 CPMAddPackage(
         NAME geolib_library
         GITHUB_REPOSITORY mitre/geodetic_library
-        VERSION 3.2.8
+        VERSION 3.2.9
         GIT_TAG main
 )
 

@@ -129,7 +129,7 @@ Drop this in the appropriate place for your application:
 CPMAddPackage(
         NAME geolib_library
         GITHUB_REPOSITORY mitre/geodetic_library
-        VERSION 3.2.8
+        VERSION 3.2.9
         GIT_TAG main
 )
 ```
