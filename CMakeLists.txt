@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.14)
-project(GEOLIB VERSION 3.2.9.0) # the nano value is a boolean. 1 == SNAPSHOT, 0 == release
+project(GEOLIB VERSION 3.2.10.0) # the nano value is a boolean. 1 == SNAPSHOT, 0 == release
 
 set (CMAKE_CXX_STANDARD 11)
+
+option(BUILD_TEST_GEOLIB "Build the testGeolib target" OFF)
 
 # Include a suite of helper functions for output and building the aaesim package
 include(.cmake/functions.cmake)

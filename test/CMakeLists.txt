@@ -9,21 +9,23 @@ SET(TEST_CLASSES
     testLLPoint/src/testLLPoint.cc 
     testShape/src/testShape.cc
     testVector/src/testVector.cc
-    )
+)
 
 SET(TEST_SRC
-        ${TEST_SRC_DIR}/testGeolib.cc
-        ${TEST_SRC_DIR}/testUtil.cc
-        ${TEST_CLASSES}
-        )
+    ${TEST_SRC_DIR}/testGeolib.cc
+    ${TEST_SRC_DIR}/testUtil.cc
+    ${TEST_CLASSES}
+)
 
-add_executable(testGeolib ${TEST_SRC})
-target_include_directories(testGeolib PUBLIC ${geolib_INCLUDE_DIRS} ${geolib_test_INCLUDE_DIRS})
-target_link_libraries(testGeolib geolib)
-target_compile_definitions(testGeolib 
-        PRIVATE 
-        FILEROOT=".")
-set_target_properties(testGeolib 
-        PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin
-        )
+if(BUILD_TEST_GEOLIB)
+    add_executable(testGeolib ${TEST_SRC})
+    target_include_directories(testGeolib PUBLIC ${geolib_INCLUDE_DIRS} ${geolib_test_INCLUDE_DIRS})
+    target_link_libraries(testGeolib geolib)
+    target_compile_definitions(testGeolib 
+            PRIVATE 
+            FILEROOT=".")
+    set_target_properties(testGeolib 
+            PROPERTIES
+            RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin
+    )
+endif()
