@@ -126,10 +126,11 @@ We currently use a custom test harness for our testing. The goal is to switch ov
 
 Drop this in the appropriate place for your application:
 ```cmake
+include(cmake/CPM.cmake)
 CPMAddPackage(
         NAME geolib_library
         GITHUB_REPOSITORY mitre/geodetic_library
-        VERSION 3.2.9
+        VERSION 3.2.10
         GIT_TAG main
 )
 ```
@@ -138,7 +139,7 @@ When using this library, we strongly recommend using a tagged, versioned build o
 Then, where you do your linking commands in cmake, also add this:
 ```cmake
 target_include_directories(my-application PUBLIC ${geolib_library_SOURCE_DIR}/include)
-target_link_libraries(my-application geolib)
+target_link_libraries(my-application mitre::geolib)
 ```
 
 Once these are done, your application (`my-application`) will be linked against `geolib_library` and you can call it from your code. Like this:
