@@ -3,7 +3,11 @@ project(GEOLIB VERSION 3.2.10.0) # the nano value is a boolean. 1 == SNAPSHOT, 0
 
 set (CMAKE_CXX_STANDARD 11)
 
-option(BUILD_TEST_GEOLIB "Build the testGeolib target" OFF)
+string(TOLOWER "${PROJECT_NAME}" PROJECT_NAME_LOWER)
+
+option(BUILD_TESTING "Build the testGeolib target" ON)
+# option(SOLVER_TYPE "Solver type desired for the build: VINCENTY or KARNEY" VINCENTY)
+set(SOLVER_TYPE "VINCENTY" CACHE STRING "Solver type desired for the build: VINCENTY or KARNEY")
 
 # Include a suite of helper functions for output and building the aaesim package
 include(.cmake/functions.cmake)
@@ -39,8 +43,6 @@ configure_file(${PROJECT_SOURCE_DIR}/.cmake/build_info.h.template ${PROJECT_SOUR
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-strict-aliasing")
 
-# cmake -DCMAKE_BUILD_TYPE=Release ..
-# cmake -DCMAKE_BUILD_TYPE=Debug ..
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wparentheses -Wno-sign-compare -O0 -g")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall -Wparentheses -Wno-sign-compare -O3 -g3")
 
@@ -49,11 +51,38 @@ set (GEOLIB_SRC_DIR
         ${PROJECT_SOURCE_DIR}/src/c)
 set (geolib_INCLUDE_DIRS
         ${PROJECT_SOURCE_DIR}/include/geolib)
-set (geolib_test_INCLUDE_DIRS
-        ${PROJECT_SOURCE_DIR}/include/test)
-set (TEST_SRC_DIR 
-        ${PROJECT_SOURCE_DIR}/test)
 
-# Look at the subdirectory definitions to understand the build details
 add_subdirectory(${GEOLIB_SRC_DIR})
-add_subdirectory(${TEST_SRC_DIR})
+if (BUILD_TESTING)
+    message(STATUS "Building tests for ${PROJECT_NAME}")
+    set (geolib_test_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/include/test)
+    set (TEST_SRC_DIR ${PROJECT_SOURCE_DIR}/test)
+    add_subdirectory(${TEST_SRC_DIR})
+else()
+    message(STATUS "Skipping tests for ${PROJECT_NAME}")
+endif()
+
+# Install and Export for downstream users of the library
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME_LOWER}-config-version.cmake"
+    COMPATIBILITY AnyNewerVersion
+)
+configure_package_config_file(
+    ".cmake/${PROJECT_NAME_LOWER}-config.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME_LOWER}-config.cmake"
+    INSTALL_DESTINATION lib/cmake/${PROJECT_NAME_LOWER}
+)
+install(
+    TARGETS geolib
+    EXPORT ${PROJECT_NAME_LOWER}-targets
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+    PUBLIC_HEADER DESTINATION include
+)
+install(
+    EXPORT ${PROJECT_NAME_LOWER}-targets
+    FILE ${PROJECT_NAME_LOWER}-targets.cmake
+    NAMESPACE mitre::
+    DESTINATION lib/cmake/${PROJECT_NAME_LOWER}
+)

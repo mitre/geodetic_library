@@ -17,15 +17,13 @@ SET(TEST_SRC
     ${TEST_CLASSES}
 )
 
-if(BUILD_TEST_GEOLIB)
-    add_executable(testGeolib ${TEST_SRC})
-    target_include_directories(testGeolib PUBLIC ${geolib_INCLUDE_DIRS} ${geolib_test_INCLUDE_DIRS})
-    target_link_libraries(testGeolib geolib)
-    target_compile_definitions(testGeolib 
-            PRIVATE 
-            FILEROOT=".")
-    set_target_properties(testGeolib 
-            PROPERTIES
-            RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin
-    )
-endif()
+add_executable(testGeolib ${TEST_SRC})
+target_include_directories(testGeolib PUBLIC ${geolib_INCLUDE_DIRS} ${geolib_test_INCLUDE_DIRS})
+target_link_libraries(testGeolib geolib)
+target_compile_definitions(testGeolib 
+        PRIVATE 
+        FILEROOT=".")
+set_target_properties(testGeolib 
+        PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin
+)
