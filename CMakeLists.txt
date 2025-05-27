@@ -6,7 +6,6 @@ set (CMAKE_CXX_STANDARD 11)
 string(TOLOWER "${PROJECT_NAME}" PROJECT_NAME_LOWER)
 
 option(BUILD_TESTING "Build the testGeolib target" ON)
-# option(SOLVER_TYPE "Solver type desired for the build: VINCENTY or KARNEY" VINCENTY)
 set(SOLVER_TYPE "VINCENTY" CACHE STRING "Solver type desired for the build: VINCENTY or KARNEY")
 
 # Include a suite of helper functions for output and building the aaesim package
@@ -18,7 +17,7 @@ if (${PROJECT_VERSION_TWEAK})
 else()
     set(geolib_VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
 endif()
-message("-- Generating build for ${PROJECT_NAME} version ${geolib_VERSION}")
+message(STATUS "Generating build for ${PROJECT_NAME} version ${geolib_VERSION}")
 
 # Add stuff to turn on code coverage only if a Debug build
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -54,7 +53,6 @@ set (geolib_INCLUDE_DIRS
 
 add_subdirectory(${GEOLIB_SRC_DIR})
 if (BUILD_TESTING)
-    message(STATUS "Building tests for ${PROJECT_NAME}")
     set (geolib_test_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/include/test)
     set (TEST_SRC_DIR ${PROJECT_SOURCE_DIR}/test)
     add_subdirectory(${TEST_SRC_DIR})
