@@ -404,57 +404,57 @@ int main(int argc, char *argv[])
         addTestSuite(suite, &masterSuite);
         if (opt)
             break;
-    case 41: // formerly case 201
+    case 41: 
         suite = testCreateLocus_AllSets();
         addTestSuite(suite, &masterSuite);
         if (opt)
             break;
-    case 42: // formerly case 202
+    case 42: 
         suite = testDistToLocusFromGeoDist_AllSets();
         addTestSuite(suite, &masterSuite);
         if (opt)
             break;
-    case 43: // formerly case 203
+    case 43: 
         suite = testDistToLocusFromGeoPt_AllSets();
         addTestSuite(suite, &masterSuite);
         if (opt)
             break;
-    case 44: // formerly case 204
+    case 44: 
         suite = testPtOnLocusFromGeoPt_AllSets();
         addTestSuite(suite, &masterSuite);
         if (opt)
             break;
-    case 45: // formerly case 205
+    case 45: 
         suite = testPtIsOnLocus_AllSets();
         addTestSuite(suite, &masterSuite);
         if (opt)
             break;
-    case 46: // formerly case 206
+    case 46: 
         suite = testLocusArcIntx_AllSets();
         addTestSuite(suite, &masterSuite);
         if (opt)
             break;
-    case 47: // formerly case 207
+    case 47: 
         suite = testLocusGeoIntx_AllSets();
         addTestSuite(suite, &masterSuite);
         if (opt)
             break;
-    case 48: // formerly case 208
+    case 48: 
         suite = testLocusIntx_AllSets();
         addTestSuite(suite, &masterSuite);
         if (opt)
             break;
-    case 49: // formerly case 210
+    case 49: 
         suite = testLocusCrsAtPt_AllSets();
         addTestSuite(suite, &masterSuite);
         if (opt)
             break;
-    case 50: // formerly case 211
+    case 50: 
         suite = testProjectToLocus_AllSets();
         addTestSuite(suite, &masterSuite);
         if (opt)
             break;
-    case 51: // formerly case 214
+    case 51: 
         suite = testArcTanToTwoLoci_AllSets();
         addTestSuite(suite, &masterSuite);
         if (opt)
