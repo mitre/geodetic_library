@@ -37,13 +37,13 @@
 
 using namespace geolib_idealab;
 
-const double DEG2RAD = M_PI / 180.0;
-const double RAD2DEG = 180.0 / M_PI;
-const double NMTOL = 0.03 / 100.0 / 1852.0; //0.03 cm or ~1.62e-7 nm
-const double LLDEGTOL = 5.0e-8; //5e-8 degrees or 0.00018 sec
-const double AZDEGTOL = 5.0e-7; //5e-7 deg or 8.72665e-9 rad or 0.162 cm at 100 nm
-const double NMSHORTDIST = SPHERICAL_AZIMUTH_CUTOFF_DISTANCE; //5e-4 nm or 0.926 m
-const double NMLARGEDIST = 10000.0; //10000 nm
+// const double DEG2RAD = M_PI / 180.0;
+// const double RAD2DEG = 180.0 / M_PI;
+// const double NMTOL = 0.03 / 100.0 / 1852.0; //0.03 cm or ~1.62e-7 nm
+// const double LLDEGTOL = 5.0e-8; //5e-8 degrees or 0.00018 sec
+// const double AZDEGTOL = 5.0e-7; //5e-7 deg or 8.72665e-9 rad or 0.162 cm at 100 nm
+// const double NMSHORTDIST = SPHERICAL_AZIMUTH_CUTOFF_DISTANCE; //5e-4 nm or 0.926 m
+// const double NMLARGEDIST = 10000.0; //10000 nm
 
 
 
@@ -81,7 +81,7 @@ void testLocusDifferences() {
 
 	LLPoint geoPt, testLocPt;
 
-	double maxDist = 0, maxLocDist = 0, maxCourse, maxCourseDiff, courseDiff;
+	double maxDist = 0, maxLocDist = 0, maxCourseDiff, courseDiff;
 
 	ErrorSet err = 0;
 	double tol = 1.37e-9, eps = 1e-20;
@@ -129,7 +129,6 @@ void testLocusDifferences() {
 
 					if ((projDist > 0) && (courseDiff > maxCourseDiff)) {
 						maxCourseDiff = courseDiff;
-						maxCourse = geoTestCourse;
 					}
 
 					if (dist > maxDist) {
@@ -140,11 +139,9 @@ void testLocusDifferences() {
 
 					err = inverse(testLocPt, projPt, NULL, NULL, &dist2, eps);
 
-//					fprintf(fp,"%f,%f,%f,%f,%f,%f,%f,%f\n",locDist,projDist,dist/tol,dist2/tol,testLat*180/M_PI,testLon*180/M_PI,testCourse, maxCourse);
 					if (dist2 > tol) {
 						failCount++;
 						fprintf(fp,"%f,%f,%f,%f,%f,%f,%f,%f\n",locDist,projDist,dist/tol,dist2/tol,testLat*180/M_PI,testLon*180/M_PI,testCourse, maxCourseDiff);
-//						fprintf(fp,"%f,%f,%f,%f,%f,%f,%f,%f\n",locDist,projDist,dist/tol,dist2/tol,testLat*180/M_PI,testLon*180/M_PI,testCourse, maxCourse);
 					}
 
 					if (dist > maxLocDist) {
@@ -152,130 +149,18 @@ void testLocusDifferences() {
 					}
 				}
 			}
-//			fprintf(fp,"%f,%f,%f,%f,%f,%f,%f,%f\n",locDist,projDist,dist/tol,dist2/tol,testLat*180/M_PI,testLon*180/M_PI,testCourse, maxCourseDiff);
-			if (maxLocDist > 1.37e-9) {
-//				fprintf(fp,"%f,%f,%f,%f,%f,%f,%f,%f\n",locDist,projDist,dist/tol,dist2/tol,testLat*180/M_PI,testLon*180/M_PI,testCourse, maxCourseDiff);
-//				printf("Distance from geo start:  %e\n", projDist);
-//				printf("Maximum Geo Distance Error: %e\n", maxDist);
-//				printf("Maximum Locus Distance Error: %e\n", maxLocDist);
-//				printf("Maximum Course Difference: %e\n", maxCourse);
-			}
 			printf("Fail Count:  %i\n", failCount);
 			projDist = projDist - 5 / 6076.12;
 			printf("Proj Dist: %f\n", projDist * 6076.12);
 		}
 		fprintf(fp,"\n");
 		printf("\n\n");
-		//locLength = locLength / 2;
 		projDist = 200 / 6076.12;
 		printf("Locus Length: %e\n", locDist);
 	}
 	fclose(fp);
 
 	printf("Failed: %i\n", failCount);
-
-//	fp = fopen("C:/Users/jheidrich/Documents/shortLocusTestOutput.csv", "w");
-//
-//	locLength = 0.00164579; //10 Feet
-//
-//	minLocDist = 0.0;
-//	maxLocDist = 50.0;
-//
-//	for (k=2;k<11;k=k+2) {
-//		locLength = 20.0;
-//		locDist = (double)k;
-//		for (j=1;j<20;j++) {
-//			for (i=0;i<numTests;i++) {
-//				testLat = randLat() * M_PI / 180;
-//				testLon = randLon() * M_PI / 180;
-//				testCourse = randAzimuth();
-//
-//				err = createPt(&geoStart, testLat, testLon);
-//
-//				if (!ptIsAtPole(geoStart, &err, tol, eps)) {
-//					testCount = testCount + 1;
-//
-//					err = direct(geoStart, testCourse, locLength, &geoEnd, eps);
-//
-//					err = createLocus(&testLoc, geoStart, geoEnd, locDist, locDist, 0, tol, eps);
-//
-//					if (err) {
-//						printf(formatErrorMessage(err));
-//					}
-//
-//					err = createPt(&testGeoStart, testLoc.locusStart.latitude, testLoc.locusStart.longitude);
-//					err = createPt(&testGeoEnd, testLoc.locusEnd.latitude, testLoc.locusEnd.longitude);
-//
-//					err = inverse(testGeoStart, testGeoEnd, &testGeoCourse, NULL, &dist, eps);
-//
-//					err = direct(testGeoStart, testGeoCourse, dist / 2, &testPt, eps);
-//
-//					err = projectToLocus(testLoc, testPt, &projPt, NULL, &projDist, tol, eps);
-//
-//					if ((projDist > 0.000164579)) {
-//						failCount = failCount + 1;
-//					}
-//
-//					if ((projDist > maxDist)) {
-//						maxDist = projDist;
-//						maxLat = geoStart.latitude;
-//						maxLon = geoStart.longitude;
-//						maxCourse = testCourse;
-//					}
-//				}
-//			}
-//			fprintf(fp, "%f,%f,%f,%f,%f,%f\n",locDist,maxDist*6076.12*30,locLength, maxLat,maxLon,maxCourse);
-//			printf("Locus Length:  %f\n", locLength);
-//			printf("Max Dist: %e\n", maxDist);
-//			printf("Failures:  %i / %i\n", failCount, testCount);
-//			maxDist = 0;
-//			failCount = 0;
-//			testCount = 0;
-//			locLength = locLength + 3;
-//		}
-//	}
-//	fclose(fp);
-}
-
-//void tempTest() {
-//	LLPoint pts[5];
-//	double lonList[5], latList[5];
-//	int idx[5];
-//	int i = 0;
-//	ErrorSet err = 0;
-//
-//	err = createPt(&pts[4], .5, .2);
-//	err = createPt(&pts[3], .5, .4);
-//	err = createPt(&pts[2], .5, .2);
-//	err = createPt(&pts[1], .5, .4);
-//	err = createPt(&pts[0], .5, .8);
-//
-//	for (i=0;i<5;i++) {
-//		lonList[i] = pts[i].longitude;
-//		idx[i] = i;
-//	}
-//
-//	for (i=0;i<5;i++) {
-//		printf("Longitude: %f\n", lonList[i]);
-//	}
-//
-//	sortPoints(latList,lonList,idx,5);
-//
-//	for (i=0;i<5;i++) {
-//		printf("Longitude: %f\n", lonList[i]);
-//	}
-
-//	sortPoints(pts, idx, 5);
-//
-//	for (i=0;i<5;i++) {
-//		printf("Longitude:  %f\n", pts[i].longitude);
-//		printf("Index: %i\n", idx[i]);
-//	}
-//}
-
-void set_fpu (unsigned int mode)
-{
-  asm ("fldcw %0" : : "m" (*&mode));
 }
 
 int main(int argc, char* argv[])
@@ -285,17 +170,10 @@ int main(int argc, char* argv[])
     int i = 0;
     int saveSummary = 0;
     char* outputFileName = NULL;
-    time_t start, stop;
-    double diff;
 
     TestSuite masterSuite;
     TestSuite suite;
     TestSet set;
-
-#ifdef DOUBLE
-  set_fpu (0x27F);  /* use double-precision rounding */
-#endif
-
 
     masterSuite = newTestSuite("testGeolib - master testing suite");
 
@@ -446,19 +324,19 @@ int main(int argc, char* argv[])
         addTestSuite(suite, &masterSuite);
         if (opt)
             break;
-    case 18: //formerly case 175
+    case 18:
         //TODO Create new test set
         suite = testProjectToGeoAtAngle_AllSets();
         addTestSuite(suite, &masterSuite);
         if (opt)
             break;
-    case 21: //formerly case 18
+    case 21: 
         //TODO Recombine test data creation logic
         suite = testInitArcIntx_AllSets();
         addTestSuite(suite, &masterSuite);
         if (opt)
             break;
-    case 22: //formerly case 19
+    case 22:
         suite = testArcIntx_AllSets();
         addTestSuite(suite, &masterSuite);
         if (opt)
@@ -801,9 +679,6 @@ int main(int argc, char* argv[])
     {
         reportConstants(outputFileName);  /* NULL arg will default to STDOUT */
         displayTestSuite(masterSuite);
-        //Pause the console output. No need to set a breakpoint to see test results
-        // This breaks autobuilds.  --RKIRKMAN
-        //newflush(stdin);
     }
 
     printf("Time Elapsed: %lf sec\n",time_c);
